@@ -55,7 +55,7 @@ class KeyboardAccessoryView extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const keyboardShowEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
     const keyboardHideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
 
@@ -84,12 +84,12 @@ class KeyboardAccessoryView extends Component {
       ios: keyboardEvent.endCoordinates.height,
       android: this.props.androidAdjustResize
         ? 0
-        : keyboardEvent.endCoordinates.height
+        : keyboardEvent.endCoordinates.height,
+      harmony: keyboardEvent.endCoordinates.height
     });
 
     const keyboardAnimate = () => {
       const { animationConfig, animateOn } = this.props;
-
       if (animateOn === 'all' || Platform.OS === animateOn) {
         LayoutAnimation.configureNext(
           accessoryAnimation(keyboardEvent.duration, keyboardEvent.easing, animationConfig)
@@ -119,10 +119,10 @@ class KeyboardAccessoryView extends Component {
 
   handleKeyboardHide = (keyboardEvent) => {
     const { animateOn, animationConfig } = this.props;
-
     if (animateOn === 'all' || Platform.OS === animateOn) {
       LayoutAnimation.configureNext(
-        animationConfig || accessoryAnimation(keyboardEvent.duration, keyboardEvent.easing, animationConfig)
+        // animationConfig || 
+        accessoryAnimation(keyboardEvent.duration, keyboardEvent.easing, animationConfig)
       );
     }
 
@@ -159,7 +159,7 @@ class KeyboardAccessoryView extends Component {
     const isChildRenderProp = typeof children === "function";
 
     return (
-      <View style={{ [heightProperty]: (isKeyboardVisible || alwaysVisible ? visibleHeight  : 0) }}>
+      <View style={{ [heightProperty]: (isKeyboardVisible || alwaysVisible ? visibleHeight : 0) }}>
         <View style={[
           styles.accessory,
           !hideBorder && styles.accessoryBorder,
@@ -171,9 +171,9 @@ class KeyboardAccessoryView extends Component {
           }
         ]}>
           <View onLayout={this.handleChildrenLayout}>
-            { isChildRenderProp
-               ? children({ isKeyboardVisible })
-               : children }
+            {isChildRenderProp
+              ? children({ isKeyboardVisible })
+              : children}
           </View>
         </View>
       </View>
@@ -183,7 +183,7 @@ class KeyboardAccessoryView extends Component {
 
 KeyboardAccessoryView.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  animateOn: PropTypes.oneOf(["ios", "android", "all", "none"]),
+  animateOn: PropTypes.oneOf(["ios", "android", "all", "none", "harmony"]),
   animationConfig: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   bumperHeight: PropTypes.number,
   visibleOpacity: PropTypes.number,
