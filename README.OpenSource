@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "react-native-keyboard-accessory",
+        "License": "MIT License",
+        "License File": "https://github.com/ardaogulcan/react-native-keyboard-accessory/blob/master/LICENSE",
+        "Version Number": "0.1.16",
+        "Owner" : "xiafeng@huawei.com",
+        "Upstream URL": "https://github.com/ardaogulcan/react-native-keyboard-accessory",
+        "Description": "A React Native Keyboard Accessory (View, Navigation) Component. Sticky views on keyboard."
+    }
+]
