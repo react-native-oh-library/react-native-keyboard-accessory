@@ -1,4 +1,4 @@
-# @react-native-oh-tpl/react-native-keyboard-accessory
+# @react-native-ohos/react-native-keyboard-accessory
 
 This project is based on [react-native-keyboard-accessory](https://github.com/ardaogulcan/react-native-keyboard-accessory)
 
