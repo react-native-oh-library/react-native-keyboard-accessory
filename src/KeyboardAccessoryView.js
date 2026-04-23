@@ -75,9 +75,10 @@ class KeyboardAccessoryView extends Component {
   }
 
   handleChildrenLayout = (layoutEvent) => {
+    const childHeight = layoutEvent.nativeEvent.layout.height;
     this.setState({
-      visibleAccessoryHeight: layoutEvent.nativeEvent.layout.height,
-      accessoryHeight: this.props.alwaysVisible || this.state.isKeyboardVisible ? layoutEvent.nativeEvent.layout.height : 0,
+      visibleAccessoryHeight: childHeight,
+      accessoryHeight: childHeight,
     });
   }
 
@@ -136,7 +137,8 @@ class KeyboardAccessoryView extends Component {
     this.setState({
       isKeyboardVisible: false,
       keyboardHeight: 0,
-      accessoryHeight: this.props.alwaysVisible ? this.state.visibleAccessoryHeight : 0,
+      // 修复：保持 accessoryHeight 值，不要设置为 0
+      accessoryHeight: this.props.alwaysVisible ? this.state.visibleAccessoryHeight : this.state.accessoryHeight,
     })
   }
 
@@ -161,7 +163,9 @@ class KeyboardAccessoryView extends Component {
       children,
     } = this.props;
 
-    const visibleHeight = accessoryHeight + (avoidKeyboard ? keyboardHeight : 0);
+    // const visibleHeight = accessoryHeight + (avoidKeyboard ? keyboardHeight : 0);
+    // 修复：外层容器高度需要包含 bumperHeight
+    const visibleHeight = accessoryHeight + bumperHeight + (avoidKeyboard ? keyboardHeight : 0);
     const applySafeArea = isSafeAreaSupported && inSafeAreaView;
     const isChildRenderProp = typeof children === "function";
 
