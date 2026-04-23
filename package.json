@@ -1,6 +1,6 @@
 {
   "name": "@react-native-ohos/react-native-keyboard-accessory",
-  "version": "0.1.17",
+  "version": "0.1.18-rc.1",
   "description": "A React Native Keyboard Accessory (View, Navigation) Component. Sticky views on keyboard.",
   "author": {
     "name": "Arda Oğulcan Pektaş",
@@ -23,16 +23,14 @@
     "react-native",
     "keyboard-accessory",
     "keyboard",
-    "ios",
-    "android",
+    "harmony",
     "react-component"
   ],
   "tags": [
     "react",
     "react-native",
     "react-component",
-    "ios",
-    "android"
+    "harmony"
   ],
   "license": "MIT",
   "main": "src/index.js",
